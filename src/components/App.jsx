@@ -1,7 +1,9 @@
+import Navigation from './Navigation/Navigation';
+
 export const App = () => {
   return (
     <div className="app">
-      <div>React</div>
+      <Navigation />
     </div>
   );
 };
