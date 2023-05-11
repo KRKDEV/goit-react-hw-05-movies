@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import css from './Home.module.css';
+import { Loader } from '../../components/Loader/Loader';
 
 const API_KEY = `5576770c01d63e1242c2c0a47f8d9a02`;
 
@@ -39,17 +40,19 @@ const Home = () => {
     <main>
       <h1>Trending today...</h1>
       <ul className={css['trending__list']}>
-        {isLoading
-          ? true
-          : title &&
-            title.length &&
-            title.map(({ id, title }) => (
-              <li key={id} className={css['trending__item']}>
-                <Link to={`/movies/${id}`}>
-                  <p>{title}</p>
-                </Link>
-              </li>
-            ))}
+        {isLoading ? (
+          <Loader />
+        ) : (
+          title &&
+          title.length &&
+          title.map(({ id, title }) => (
+            <li key={id} className={css['trending__item']}>
+              <Link to={`/movies/${id}`}>
+                <p>{title}</p>
+              </Link>
+            </li>
+          ))
+        )}
       </ul>
     </main>
   );
