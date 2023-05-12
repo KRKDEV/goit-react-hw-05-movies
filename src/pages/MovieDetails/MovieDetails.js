@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link, Outlet } from 'react-router-dom';
 import css from './MovieDetails.module.css';
 
 const API_KEY = `5576770c01d63e1242c2c0a47f8d9a02`;
@@ -25,10 +25,7 @@ const MovieDetails = () => {
   const user_score = (details.vote_average * 1000) / 100;
   return (
     <main>
-      <button type="submit" className={css['movie-details__btn']}>
-        Go back
-      </button>
-      <div className={css['movie-details__wrapper']}>
+      <div className={css['movie-details']}>
         <img
           src={poster}
           alt={details.title}
@@ -44,7 +41,32 @@ const MovieDetails = () => {
           <li>
             <h3>Overview</h3>
           </li>
+          <li>
+            <p>{details.overview}</p>
+          </li>
+          <li>
+            <h3>Genres</h3>
+          </li>
+          <li>
+            {details.genres !== undefined && (
+              <span>{`${details.genres
+                .map(genre => genre.name)
+                .join(', ')}`}</span>
+            )}
+          </li>
         </ul>
+      </div>
+      <div className={css['additional']}>
+        <h3>Additional informations</h3>
+        <div className={css['additional__wrapper']}>
+          <Link to="cast">
+            <p>Cast</p>
+          </Link>
+          <Link to="reviews">
+            <p>Reviews</p>
+          </Link>
+        </div>
+        <Outlet />
       </div>
     </main>
   );
