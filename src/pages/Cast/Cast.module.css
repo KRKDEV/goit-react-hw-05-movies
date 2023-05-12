@@ -1,3 +1,15 @@
-.cast__btn {
-  border: none;
+.cast {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  list-style: none;
+  padding: 0;
+}
+
+.cast-card {
+  background-color: rgb(240, 240, 240);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-basis: 12%;
 }
