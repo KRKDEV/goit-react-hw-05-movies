@@ -1,0 +1,29 @@
+.searchform {
+  display: flex;
+  border: 1px solid rgb(240, 240, 240);
+  width: 500px;
+}
+
+.searchform__input {
+  width: 100%;
+  height: 40px;
+  border: none;
+  background-color: rgb(240, 240, 240);
+  padding-left: 4px;
+  outline: none;
+}
+
+.searchform__input:focus {
+  border: 1px solid lightcoral;
+}
+
+.searchform__btn {
+  width: 100px;
+  height: 40px;
+  border: 0;
+  background-color: lightcoral;
+  font-family: 'Segoe UI';
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+}
