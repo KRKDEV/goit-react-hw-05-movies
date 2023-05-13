@@ -25,6 +25,9 @@ const MovieDetails = () => {
   const user_score = (details.vote_average * 1000) / 100;
   return (
     <main>
+      <Link to="/" className="return__btn">
+        Go back
+      </Link>
       <div className={css['movie-details']}>
         <img
           src={poster}
