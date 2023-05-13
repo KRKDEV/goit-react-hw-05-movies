@@ -23,6 +23,8 @@ const Home = () => {
       return results.map(movie => ({
         title: movie.title,
         id: movie.id,
+        poster_path: movie.poster_path,
+        vote_average: movie.vote_average.toString().slice(0, 1),
       }));
     } else {
       console.log('There was an error with fetch');
@@ -36,6 +38,7 @@ const Home = () => {
     getMovies();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return (
     <main>
       <h1>Trending today...</h1>
@@ -45,10 +48,17 @@ const Home = () => {
         ) : (
           title &&
           title.length &&
-          title.map(({ id, title }) => (
-            <li key={id} className={css['trending__item']}>
+          title.map(({ id, title, poster_path, vote_average }) => (
+            <li key={id} className={css['trending__card']}>
               <Link to={`/movies/${id}`}>
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+                  alt="Poster"
+                />
                 <p>{title}</p>
+                <p className={css['trending__vote']}>
+                  <span>{vote_average}</span> / 10
+                </p>
               </Link>
             </li>
           ))
