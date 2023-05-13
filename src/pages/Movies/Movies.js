@@ -5,8 +5,8 @@ import Notiflix from 'notiflix';
 import css from './Movies.module.css';
 
 const API_KEY = `5576770c01d63e1242c2c0a47f8d9a02`;
-const About = () => {
-  const [titles] = useState([]);
+const Movies = () => {
+  const [movies, setMovies] = useState([]);
   const [value, setValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -15,7 +15,6 @@ const About = () => {
   const handleSubmit = async event => {
     setIsLoading(true);
     event.preventDefault();
-    event.currentTarget.reset();
     if (value === '') {
       setIsLoading(false);
       return Notiflix.Notify.info('You have to write movie title');
@@ -36,7 +35,7 @@ const About = () => {
         poster_path: movie.poster_path,
       }));
       results.forEach(result => {
-        titles.push({
+        movies.push({
           movieId: result.id,
           movieTitle: result.title,
           moviePoster: result.poster_path,
@@ -49,9 +48,9 @@ const About = () => {
   };
 
   const handleChange = event => {
+    setMovies([]);
     setValue(event.target.value);
   };
-
   return (
     <main>
       <h1>Search for movies</h1>
@@ -70,8 +69,8 @@ const About = () => {
         {isLoading ? (
           <Loader />
         ) : (
-          titles.length !== 0 &&
-          titles.map(movie => (
+          movies.length !== 0 &&
+          movies.map(movie => (
             <li key={movie.movieId} className={css['search__card']}>
               <Link to={`/movies/${movie.movieId}`}>
                 <img
@@ -88,4 +87,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default Movies;
