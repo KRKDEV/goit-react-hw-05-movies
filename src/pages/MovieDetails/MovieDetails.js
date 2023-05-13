@@ -36,7 +36,9 @@ const MovieDetails = () => {
             <h1>{details.title}</h1>
           </li>
           <li>
-            <p>User score: {user_score}%</p>
+            <p>
+              User score: <span>{user_score}%</span>
+            </p>
           </li>
           <li>
             <h3>Overview</h3>

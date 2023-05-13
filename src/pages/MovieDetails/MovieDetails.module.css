@@ -56,3 +56,8 @@
 .additional a:hover {
   background-color: rgb(190, 190, 190);
 }
+
+.movie-details__list span {
+  color: lightcoral;
+  font-weight: 700;
+}
