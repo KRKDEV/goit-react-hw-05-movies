@@ -14,3 +14,8 @@
 .reviews__list span {
   color: lightcoral;
 }
+
+.reviews__list h3 {
+  border-bottom: 2px solid lightcoral;
+  padding-bottom: 5px;
+}
