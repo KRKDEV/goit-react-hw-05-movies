@@ -1,0 +1,16 @@
+.reviews__list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+}
+
+.reviews__item {
+  background-color: rgb(240, 240, 240);
+  padding: 20px;
+}
+
+.reviews__list span {
+  color: lightcoral;
+}
