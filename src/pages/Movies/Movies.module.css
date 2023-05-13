@@ -27,3 +27,29 @@
   color: white;
   cursor: pointer;
 }
+
+.search__list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.search__card {
+  display: flex;
+  flex-basis: 10%;
+  background-color: rgb(240, 240, 240);
+  justify-content: center;
+}
+
+.search__list a {
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 700;
+}
+
+.search__list a:hover {
+  border: 1px solid lightcoral;
+}

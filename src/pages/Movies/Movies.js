@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Loader } from '../../components/Loader/Loader';
 import { Link } from 'react-router-dom';
+import Notiflix from 'notiflix';
 import css from './Movies.module.css';
 
 const API_KEY = `5576770c01d63e1242c2c0a47f8d9a02`;
@@ -15,16 +16,16 @@ const About = () => {
     setIsLoading(true);
     event.preventDefault();
     event.currentTarget.reset();
-    if (value.trim() === '') {
+    if (value === '') {
       setIsLoading(false);
-      return console.log('Nothing was written');
+      return Notiflix.Notify.info('You have to write movie title');
     }
     const movieSearch = await fetch(API_URL)
       .then(response => response.json())
       .catch(error => console.log('There was an error', error));
     if (movieSearch.results.length === 0) {
       setIsLoading(false);
-      return console.log('error');
+      return Notiflix.Notify.failure('Could not find any movies');
     }
     if (movieSearch) {
       setIsLoading(false);
@@ -32,15 +33,18 @@ const About = () => {
       results.map(movie => ({
         title: movie.title,
         id: movie.id,
+        poster_path: movie.poster_path,
       }));
       results.forEach(result => {
         titles.push({
           movieId: result.id,
           movieTitle: result.title,
+          moviePoster: result.poster_path,
         });
       });
+      Notiflix.Notify.success('Found some movies');
     } else {
-      throw new Error('Something went wrong...');
+      Notiflix.Notify.error('There was an error');
     }
   };
 
@@ -62,14 +66,18 @@ const About = () => {
           Search
         </button>
       </form>
-      <ul>
+      <ul className={css['search__list']}>
         {isLoading ? (
           <Loader />
         ) : (
           titles.length !== 0 &&
           titles.map(movie => (
-            <li key={movie.movieId}>
+            <li key={movie.movieId} className={css['search__card']}>
               <Link to={`/movies/${movie.movieId}`}>
+                <img
+                  src={`https://www.themoviedb.org/t/p/w500/${movie.moviePoster}`}
+                  alt="poster"
+                />
                 <p>{movie.movieTitle}</p>
               </Link>
             </li>
