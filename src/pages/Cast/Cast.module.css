@@ -13,3 +13,9 @@
   align-items: center;
   flex-basis: 12%;
 }
+
+.cast-card span {
+  font-weight: 700;
+  font-size: 14px;
+  color: goldenrod;
+}

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Loader } from '../../components/Loader/Loader';
 import css from './Cast.module.css';
 
 const API_KEY = `5576770c01d63e1242c2c0a47f8d9a02`;
@@ -37,6 +38,7 @@ const Cast = () => {
 
   return (
     <div>
+      {isLoading && <Loader />}
       <h3>Cast</h3>
       <ul className={css['cast']}>
         {cast && cast.length ? (
@@ -49,7 +51,9 @@ const Cast = () => {
                     alt={original_name}
                   />
                   <p>{original_name}</p>
-                  <p>{character}</p>
+                  <p>
+                    <span>{character}</span>
+                  </p>
                 </li>
               )
             )}
