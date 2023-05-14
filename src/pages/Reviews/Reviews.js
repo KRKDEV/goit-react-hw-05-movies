@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Loader } from '../../components/Loader/Loader';
 import css from './Reviews.module.css';
+import parse from 'html-react-parser';
 
 const API_KEY = `5576770c01d63e1242c2c0a47f8d9a02`;
 
@@ -48,7 +49,7 @@ const Reviews = () => {
               <h3>
                 Author: <span>{author}</span>
               </h3>
-              <p>{content}</p>
+              <p>{parse(`${content}`)}</p>
             </li>
           ))
         ) : (
